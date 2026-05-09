@@ -10,7 +10,9 @@ const navLinks = [
 
 <header class="nav">
   <div class="nav__inner container">
-    <a href="/" class="nav__logo" aria-label="The Layer — home">The Layer</a>
+    <a href="/" class="nav__logo" aria-label="The Layer — home">
+      <img src="/images/logo.svg" alt="The Layer" class="nav__logo-img" />
+    </a>
 
     <nav aria-label="Main navigation">
       <ul class="nav__list" role="list">
@@ -53,10 +55,27 @@ const navLinks = [
 <script>
   const btn = document.querySelector('.nav__hamburger') as HTMLButtonElement;
   const drawer = document.getElementById('mobile-nav');
+
   btn?.addEventListener('click', () => {
     const open = btn.getAttribute('aria-expanded') === 'true';
     btn.setAttribute('aria-expanded', String(!open));
-    if (drawer) drawer.hidden = open;
+    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    if (drawer) {
+      drawer.hidden = open;
+      if (!open) {
+        const firstLink = drawer.querySelector<HTMLAnchorElement>('a');
+        firstLink?.focus();
+      }
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
+      if (drawer) drawer.hidden = true;
+      btn.focus();
+    }
   });
 </script>
 
@@ -71,8 +90,8 @@ const navLinks = [
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
+    background: #213129;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
   .nav__inner {
@@ -83,10 +102,15 @@ const navLinks = [
   }
 
   .nav__logo {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    white-space: nowrap;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__logo-img {
+    height: 28px;
+    width: auto;
+    display: block;
   }
 
   .nav__list {
@@ -100,10 +124,10 @@ const navLinks = [
     font-size: 0.85rem;
     font-weight: 500;
     white-space: nowrap;
-    opacity: 0.8;
-    transition: opacity 0.2s;
+    color: rgba(255,255,255,0.75);
+    transition: color 0.2s;
   }
-  .nav__link:hover { opacity: 1; }
+  .nav__link:hover { color: #fff; }
 
   .nav__actions {
     display: flex;
@@ -116,20 +140,23 @@ const navLinks = [
   .nav__lang select {
     font-family: var(--font-body);
     font-size: 0.85rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(255,255,255,0.3);
     padding: 0.25rem 0.5rem;
     cursor: pointer;
+    color: #fff;
+    background: transparent;
   }
 
   .nav__book {
     font-size: 0.85rem;
     font-weight: 600;
     padding: 0.5rem 1.25rem;
-    border: 1.5px solid currentColor;
+    border: 1.5px solid rgba(255,255,255,0.6);
     white-space: nowrap;
+    color: #fff;
     transition: background 0.2s, color 0.2s;
   }
-  .nav__book:hover { background: #000; color: #fff; }
+  .nav__book:hover { background: #fff; color: #213129; }
 
   .nav__hamburger {
     display: none;
@@ -144,19 +171,20 @@ const navLinks = [
     display: block;
     width: 24px;
     height: 2px;
-    background: #000;
+    background: #fff;
   }
 
   .nav__mobile {
     padding: 1.5rem var(--gutter);
     background: #fff;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
   .nav__mobile ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-  .nav__mobile a { font-size: 1rem; font-weight: 500; }
+  .nav__mobile a { font-size: 1rem; font-weight: 500; color: #213129; }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     .nav__list { display: none; }
+    .nav__book { display: none; }
     .nav__hamburger { display: flex; }
   }
 </style>

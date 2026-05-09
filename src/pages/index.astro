@@ -361,12 +361,13 @@ const schemaOrg = {
     font-size: 0.9rem;
     font-weight: 600;
     padding: 0.65rem 1.5rem;
-    border: 1.5px solid #000;
+    border: 1.5px solid #213129;
+    color: #213129;
     transition: background 0.2s, color 0.2s;
   }
-  .btn:hover { background: #000; color: #fff; }
-  .btn--primary { background: #000; color: #fff; }
-  .btn--primary:hover { background: #333; }
+  .btn:hover { background: #213129; color: #fff; }
+  .btn--primary { background: #213129; color: #fff; }
+  .btn--primary:hover { background: #1a2720; }
   .btn--large { padding: 0.875rem 2rem; font-size: 1rem; }
 
   /* INTRO */
@@ -385,9 +386,8 @@ const schemaOrg = {
   .intro__cta { display: flex; gap: 1rem; margin-top: 1.75rem; flex-wrap: wrap; }
   .intro__recognition {
     font-size: 0.9rem;
-    font-style: italic;
     opacity: 0.65;
-    border-left: 2px solid #000;
+    border-left: 2px solid #213129;
     padding-left: 1rem;
   }
 
@@ -406,6 +406,7 @@ const schemaOrg = {
     aspect-ratio: 4/3;
     overflow: hidden;
     background: #e8e4df;
+    border-radius: 80px;
   }
   .property-card__image img {
     width: 100%; height: 100%; object-fit: cover;
@@ -416,15 +417,12 @@ const schemaOrg = {
     position: absolute;
     top: 0.75rem; left: 0.75rem;
     font-size: 0.7rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
     background: #fff;
     padding: 0.25rem 0.6rem;
   }
   .property-card__body { padding-top: 1rem; }
   .property-card__type {
     font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     opacity: 0.5;
     margin-bottom: 0.4rem;
   }
@@ -442,7 +440,7 @@ const schemaOrg = {
     gap: 2rem;
   }
   .review { padding: 2rem; border: 1px solid #e5e5e5; background: #fff; }
-  .review__quote { font-size: 1rem; font-style: italic; line-height: 1.7; margin-bottom: 1rem; }
+  .review__quote { font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
   .review__source { font-size: 0.8rem; opacity: 0.5; font-style: normal; }
 
   /* AMENITIES */
@@ -452,7 +450,7 @@ const schemaOrg = {
   .amenities__spaces { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
   .amenities__spaces h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
   .amenities__spaces p { font-size: 0.875rem; opacity: 0.65; margin: 0; }
-  .amenities__image { aspect-ratio: 3/4; overflow: hidden; background: #e8e4df; }
+  .amenities__image { aspect-ratio: 3/4; overflow: hidden; background: #e8e4df; border-radius: 80px; }
   .amenities__image img { width: 100%; height: 100%; object-fit: cover; }
 
   /* EXPLORE */
