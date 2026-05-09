@@ -1,17 +1,494 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import BookingForm from '../components/BookingForm.astro';
 
+const reviews = [
+  {
+    quote: "This was truly the most perfect stay — gorgeous home, perfect host, beautiful scenery.",
+    source: "Guest review",
+  },
+  {
+    quote: "The house is a rare gem, combining modern amenities within traditional Japanese architecture with impeccable design styling.",
+    source: "Guest review",
+  },
+  {
+    quote: "Hillary and Blake's villa is the most special place my partner and I have ever stayed.",
+    source: "Guest review",
+  },
+];
+
+const properties = [
+  {
+    name: "The Layer | Atami Hotel",
+    location: "Atami, Shizuoka",
+    type: "Boutique hotel · 7 rooms",
+    description: "A seven-room boutique hotel, bar, and kissaten in a restored 1960s building in central Atami. Showa-era warmth meets contemporary design.",
+    href: "/stay/atami-hotel",
+    // TODO: Download from Drive — Atami Hotel photos folder
+    image: "/images/atami-hotel.jpg",
+    status: "Opening Spring 2026",
+  },
+  {
+    name: "The Layer | Atami Garden",
+    location: "Atami, Shizuoka",
+    type: "Private house · Up to 6 guests",
+    description: "A beautifully restored 1930s kominka near Kinomiya Shrine. Hinoki onsen bath, tatami rooms, a private vinyl listening lounge, and Fuji woodcarving throughout.",
+    href: "/stay/atami-garden",
+    // TODO: Download from Drive — folder 1xu9_1D8Uv8Y_XmhMtkSMh6kZ7QkWPxCI (Lisa Ellen Knight Photos)
+    image: "/images/atami-garden.jpg",
+  },
+  {
+    name: "The Layer | Ito",
+    location: "Ito, Shizuoka",
+    type: "Private house",
+    description: "A mid-century Japanese residence built in 1968 by master craftsmen. Towada stone bath, engawa veranda, tatami rooms, and a karaoke space rooted in Ito's Showa culture. Rated one of Japan's top Airbnbs by Condé Nast.",
+    href: "/stay/ito",
+    // TODO: Download from Drive — folder 1HCmPwKaVyw8bKktfMhRRGFt3JYUGaIIu
+    image: "/images/ito.jpg",
+  },
+  {
+    name: "The Layer | Tangram",
+    location: "Nagano",
+    type: "Ski house",
+    description: "A winter house near Tangram-Madarao ski resort inspired by Japan's bubble-era ski culture. Warm, playful, and built for long snowy weekends.",
+    href: "/stay/tangram",
+    // TODO: Download from Drive — folder 1a0IO7GDZLeBwEeccErHaA-CSFx_r9JzI
+    image: "/images/tangram.jpg",
+  },
+  {
+    name: "The Layer | Shimoda",
+    location: "Shimoda, Shizuoka",
+    type: "Coming soon",
+    description: "At the southern tip of the Izu Peninsula, where the Pacific meets old-town Japan.",
+    href: "/stay/shimoda",
+    image: "/images/shimoda.jpg",
+    status: "Coming soon",
+  },
+];
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LodgingBusiness",
+      "@id": "https://www.thelayer.jp/#organization",
+      "name": "The Layer",
+      "url": "https://www.thelayer.jp",
+      "description": "Design-focused boutique stays in Japan's Izu Peninsula and Nagano. Restored traditional homes and a boutique hotel.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Atami",
+        "addressRegion": "Shizuoka",
+        "addressCountry": "JP"
+      },
+      "sameAs": ["https://www.instagram.com/thelayer.hotels/"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "reviewCount": "100"
+      },
+      "areaServed": ["Atami", "Ito", "Izu Peninsula", "Nagano", "Shimoda"]
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://www.thelayer.jp",
+      "name": "The Layer"
+    }
+  ]
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="The Layer — Boutique Stays in Izu & Nagano, Japan"
+  description="Design-focused boutique stays in Japan's Izu Peninsula and Nagano. Restored traditional homes and a boutique hotel — book direct for the best rates."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Welcome to The Layer">
+    <div class="hero__media">
+      <!--
+        TODO: Replace with optimised hero image.
+        Suggested: Drive ID 1eR3dcjWChG_rKrKCdRjNDhwsRKEseaJw
+        (Atami Garden — bamboo fusuma tatami)
+      -->
+      <img
+        src="/images/hero.jpg"
+        alt="The Layer Atami Garden — restored traditional Japanese kominka with tatami rooms and bamboo fusuma"
+        width="1600"
+        height="900"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero__content container">
+      <h1 class="hero__tagline">
+        Rather than destroy,<br />layer and make anew.
+      </h1>
+      <p class="hero__tagline-ja" lang="ja">壊すのではなく、新しい層を重ねて創る。</p>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <div class="container">
+    <BookingForm />
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro section container" aria-label="About The Layer">
+    <div class="intro__text">
+      <h2>Design-focused stays across Japan's Izu Peninsula and Nagano</h2>
+      <p>
+        The Layer is a collection of restored places to stay across Japan's Izu Peninsula and Nagano.
+        Each property begins with an older home or building — one with history, craft, and character —
+        and adds layers of comfort, considered design, and quiet hospitality.
+      </p>
+      <p>
+        We are not building new. We are finding what was overlooked and making it worth returning to.
+      </p>
+      <div class="intro__cta">
+        <a href="/stay" class="btn">Explore properties</a>
+        <a href="/book" class="btn btn--primary">Book direct</a>
+      </div>
+    </div>
+    <aside class="intro__aside">
+      <p class="intro__recognition">
+        Recognised by <strong>Condé Nast</strong> as one of Japan's top boutique stays.
+      </p>
+    </aside>
+  </section>
+
+  <!-- PROPERTIES -->
+  <section class="properties section" aria-labelledby="properties-heading">
+    <div class="container">
+      <h2 id="properties-heading">Where to stay</h2>
+      <p class="section__sub">
+        Five properties across Atami, Ito, Shimoda, and Nagano — each restored with care, each distinct.
+      </p>
+      <ul class="properties__grid" role="list">
+        {properties.map(p => (
+          <li class="property-card">
+            <a href={p.href} class="property-card__link" aria-label={`View ${p.name}`}>
+              <div class="property-card__image">
+                <img
+                  src={p.image}
+                  alt={`${p.name} — ${p.location}`}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                />
+                {p.status && (
+                  <span class="property-card__badge">{p.status}</span>
+                )}
+              </div>
+              <div class="property-card__body">
+                <p class="property-card__type">{p.type}</p>
+                <h3 class="property-card__name">{p.name}</h3>
+                <p class="property-card__location">{p.location}</p>
+                <p class="property-card__desc">{p.description}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews section" aria-labelledby="reviews-heading">
+    <div class="container">
+      <h2 id="reviews-heading">What guests say</h2>
+      <ul class="reviews__list" role="list">
+        {reviews.map(r => (
+          <li class="review">
+            <blockquote>
+              <p class="review__quote">"{r.quote}"</p>
+              <footer class="review__source"><cite>{r.source}</cite></footer>
+            </blockquote>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="amenities section" aria-labelledby="amenities-heading">
+    <div class="container amenities__inner">
+      <div class="amenities__text">
+        <h2 id="amenities-heading">Coffee, drinks, music, and something sweet</h2>
+        <p>
+          Alongside our stays, The Layer in Atami is home to public spaces for listening and lingering.
+          No full meals — just good coffee, considered drinks, a small sweet, and intentional sound.
+        </p>
+        <ul class="amenities__spaces" role="list">
+          <li>
+            <h4>Lobby Bar Taki</h4>
+            <p>Records and CDs, played through the night. House sweet: cookie ice cream sandwiches.</p>
+          </li>
+          <li>
+            <h4>Coffee Kissaten Tampopo</h4>
+            <p>Contemporary coffee and kissaten classics in a communal daytime space.</p>
+          </li>
+          <li>
+            <h4>Dandelion Record Kissaten</h4>
+            <p>A tenant-run record listening space. Details to follow.</p>
+          </li>
+        </ul>
+        <a href="/amenities" class="btn">Learn more</a>
+      </div>
+      <div class="amenities__image">
+        <!--
+          TODO: Download from Drive — ID 12npweC7J7MLAI6aBdukBB7Hbiz7OH8wD
+          (Atami Garden Private Japanese Vinyl Record Listening Lounge)
+        -->
+        <img
+          src="/images/amenities.jpg"
+          alt="Lobby Bar Taki at The Layer Atami — vinyl records, drinks, and a warm listening atmosphere"
+          width="700"
+          height="900"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE IZU — SEO/GEO rich section -->
+  <section class="explore section" aria-labelledby="explore-heading">
+    <div class="container">
+      <h2 id="explore-heading">Explore the Izu Peninsula</h2>
+      <p class="section__sub">
+        Our properties sit at the heart of one of Japan's most quietly remarkable regions —
+        hot springs, coastline, old-town architecture, and some of the country's finest traditional craft.
+      </p>
+      <div class="explore__areas">
+        <article class="explore__area">
+          <h3>Atami</h3>
+          <p>
+            A former resort town reviving under the weight of its own golden-age charm.
+            Onsen hotels, Showa-era kissaten, the MOA Museum of Art, and the sea.
+            Home to The Layer Atami Hotel and Atami Garden.
+          </p>
+        </article>
+        <article class="explore__area">
+          <h3>Ito</h3>
+          <p>
+            Quieter than Atami, closer to nature. Historic onsen, the Ikeda Museum of 20th Century Art,
+            and a coastline that rewards the unhurried. Home to The Layer Ito.
+          </p>
+        </article>
+        <article class="explore__area">
+          <h3>Shimoda &amp; Southern Izu</h3>
+          <p>
+            At the tip of the peninsula — Perry's landing point, deep-blue bays, and a town
+            that feels closer to the Pacific than to Tokyo. Coming soon: The Layer Shimoda.
+          </p>
+        </article>
+        <article class="explore__area">
+          <h3>Nagano</h3>
+          <p>
+            High altitude, powder snow, and a ski culture rooted in Japan's bubble era.
+            The Layer Tangram sits three minutes from Tangram-Madarao ski resort.
+          </p>
+        </article>
+      </div>
+      <a href="/explore" class="btn">Our guide to Izu &amp; Nagano</a>
+    </div>
+  </section>
+
+  <!-- BOOK DIRECT CTA -->
+  <section class="cta section" aria-label="Book direct">
+    <div class="container cta__inner">
+      <h2>Book direct. Best rates, always.</h2>
+      <p>
+        Reserve directly with The Layer for the best available rate, flexible support,
+        and a direct connection to the people who run each property.
+      </p>
+      <a href="/book" class="btn btn--primary btn--large">Check availability</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative;
+    height: min(90vh, 800px);
+    overflow: hidden;
+    background: #c8c0b4;
+  }
+  .hero__media { position: absolute; inset: 0; }
+  .hero__media img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding-bottom: 3rem;
+  }
+  .hero__tagline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.35);
+    max-width: 600px;
+  }
+  .hero__tagline-ja {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.85);
+    margin-top: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+
+  /* SHARED */
+  .section { padding-block: 4rem; }
+  .section__sub {
+    font-size: 1.05rem;
+    max-width: 640px;
+    opacity: 0.7;
+    margin-top: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: #000; color: #fff; }
+  .btn--primary { background: #000; color: #fff; }
+  .btn--primary:hover { background: #333; }
+  .btn--large { padding: 0.875rem 2rem; font-size: 1rem; }
+
+  /* INTRO */
+  .intro {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .intro__text h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 1.25rem;
+    max-width: 540px;
+  }
+  .intro__text p { opacity: 0.75; margin-bottom: 1rem; max-width: 560px; }
+  .intro__cta { display: flex; gap: 1rem; margin-top: 1.75rem; flex-wrap: wrap; }
+  .intro__recognition {
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.65;
+    border-left: 2px solid #000;
+    padding-left: 1rem;
+  }
+
+  /* PROPERTIES */
+  .properties h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.5rem; }
+  .properties__grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  .property-card__link { display: block; }
+  .property-card__image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #e8e4df;
+  }
+  .property-card__image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .property-card:hover .property-card__image img { transform: scale(1.03); }
+  .property-card__badge {
+    position: absolute;
+    top: 0.75rem; left: 0.75rem;
+    font-size: 0.7rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: #fff;
+    padding: 0.25rem 0.6rem;
+  }
+  .property-card__body { padding-top: 1rem; }
+  .property-card__type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+    margin-bottom: 0.4rem;
+  }
+  .property-card__name { font-size: 1rem; margin-bottom: 0.25rem; }
+  .property-card__location { font-size: 0.85rem; opacity: 0.6; margin-bottom: 0.6rem; }
+  .property-card__desc { font-size: 0.875rem; line-height: 1.6; opacity: 0.75; }
+
+  /* REVIEWS */
+  .reviews { background: #faf9f7; }
+  .reviews h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 2rem; }
+  .reviews__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .review { padding: 2rem; border: 1px solid #e5e5e5; background: #fff; }
+  .review__quote { font-size: 1rem; font-style: italic; line-height: 1.7; margin-bottom: 1rem; }
+  .review__source { font-size: 0.8rem; opacity: 0.5; font-style: normal; }
+
+  /* AMENITIES */
+  .amenities__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .amenities__text h2 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); margin-bottom: 1rem; max-width: 440px; }
+  .amenities__text > p { opacity: 0.75; margin-bottom: 1.5rem; max-width: 480px; }
+  .amenities__spaces { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
+  .amenities__spaces h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .amenities__spaces p { font-size: 0.875rem; opacity: 0.65; margin: 0; }
+  .amenities__image { aspect-ratio: 3/4; overflow: hidden; background: #e8e4df; }
+  .amenities__image img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* EXPLORE */
+  .explore h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.5rem; }
+  .explore__areas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-block: 2.5rem;
+  }
+  .explore__area h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .explore__area p { font-size: 0.875rem; line-height: 1.7; opacity: 0.72; }
+
+  /* CTA */
+  .cta__inner { text-align: center; max-width: 560px; margin-inline: auto; }
+  .cta__inner h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+  .cta__inner p { opacity: 0.7; margin-bottom: 2rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .properties__grid { grid-template-columns: repeat(2, 1fr); }
+    .explore__areas { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .intro { grid-template-columns: 1fr; gap: 2rem; }
+    .reviews__list { grid-template-columns: 1fr; }
+    .amenities__inner { grid-template-columns: 1fr; }
+    .amenities__image { order: -1; aspect-ratio: 16/9; }
+  }
+  @media (max-width: 600px) {
+    .properties__grid { grid-template-columns: 1fr; }
+    .explore__areas { grid-template-columns: 1fr; }
+  }
+</style>

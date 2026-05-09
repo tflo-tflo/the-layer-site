@@ -1,0 +1,162 @@
+---
+const navLinks = [
+  { label: 'Properties', href: '/stay' },
+  { label: 'Amenities', href: '/amenities' },
+  { label: 'Explore the Izu Peninsula', href: '/explore' },
+  { label: 'Stories by Layer', href: '/stories' },
+  { label: 'FAQ', href: '/faq' },
+];
+---
+
+<header class="nav">
+  <div class="nav__inner container">
+    <a href="/" class="nav__logo" aria-label="The Layer — home">The Layer</a>
+
+    <nav aria-label="Main navigation">
+      <ul class="nav__list" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a href={link.href} class="nav__link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="nav__actions">
+      <div class="nav__lang">
+        <label for="lang-select" class="sr-only">Select language</label>
+        <select id="lang-select" name="lang" aria-label="Select language">
+          <option value="en">EN</option>
+          <option value="ja">日本語</option>
+        </select>
+      </div>
+
+      <a href="/book" class="nav__book">Book Now</a>
+
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav drawer -->
+  <div id="mobile-nav" class="nav__mobile" hidden>
+    <ul role="list">
+      {navLinks.map(link => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+      <li><a href="/book">Book Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector('.nav__hamburger') as HTMLButtonElement;
+  const drawer = document.getElementById('mobile-nav');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    if (drawer) drawer.hidden = open;
+  });
+</script>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 64px;
+  }
+
+  .nav__logo {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav__list {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+  .nav__link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .nav__link:hover { opacity: 1; }
+
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .nav__lang select {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    border: 1px solid #ccc;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+
+  .nav__book {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border: 1.5px solid currentColor;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav__book:hover { background: #000; color: #fff; }
+
+  .nav__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav__hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #000;
+  }
+
+  .nav__mobile {
+    padding: 1.5rem var(--gutter);
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+  }
+  .nav__mobile ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .nav__mobile a { font-size: 1rem; font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .nav__list { display: none; }
+    .nav__hamburger { display: flex; }
+  }
+</style>

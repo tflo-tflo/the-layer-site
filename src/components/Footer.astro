@@ -1,0 +1,195 @@
+---
+const year = new Date().getFullYear();
+
+const properties = [
+  { label: 'The Layer | Atami Hotel', href: '/stay/atami-hotel' },
+  { label: 'The Layer | Atami Garden', href: '/stay/atami-garden' },
+  { label: 'The Layer | Ito', href: '/stay/ito' },
+  { label: 'The Layer | Tangram', href: '/stay/tangram' },
+  { label: 'The Layer | Shimoda', href: '/stay/shimoda' },
+];
+
+const explore = [
+  { label: 'Properties', href: '/stay' },
+  { label: 'Amenities', href: '/amenities' },
+  { label: 'Explore the Izu Peninsula', href: '/explore' },
+  { label: 'Stories by Layer', href: '/stories' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Book Now', href: '/book' },
+];
+---
+
+<footer class="footer">
+  <div class="footer__inner container">
+
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">The Layer</a>
+      <p>Design-focused stays in Japan's<br />Izu Peninsula and Nagano.</p>
+      <a
+        href="https://www.instagram.com/thelayer.hotels/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer__instagram"
+        aria-label="The Layer on Instagram"
+      >
+        Instagram
+      </a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Properties</h4>
+      <ul role="list">
+        {properties.map(p => <li><a href={p.href}>{p.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Navigate</h4>
+      <ul role="list">
+        {explore.map(e => <li><a href={e.href}>{e.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <address>
+        <p>Atami, Shizuoka, Japan</p>
+        <p><a href="mailto:info@thelayer.jp">info@thelayer.jp</a></p>
+      </address>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__bottom-inner container">
+      <div class="footer__legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+        <a href="/commercial-disclosure">Commercial Disclosure</a>
+      </div>
+      <div class="footer__lang">
+        <label for="footer-lang" class="sr-only">Select language</label>
+        <select id="footer-lang" name="lang" aria-label="Select language">
+          <option value="en">EN</option>
+          <option value="ja">日本語</option>
+        </select>
+      </div>
+      <p class="footer__copy">&copy; {year} The Layer</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  .footer {
+    border-top: 1px solid #e5e5e5;
+    margin-top: 5rem;
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-block: 3rem;
+  }
+
+  .footer__logo {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__brand p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.7;
+  }
+
+  .footer__instagram {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer__col h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  .footer__col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__col a, address a, address p {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    font-style: normal;
+    line-height: 1.6;
+    transition: opacity 0.2s;
+  }
+  .footer__col a:hover, address a:hover { opacity: 1; }
+
+  .footer__bottom {
+    border-top: 1px solid #e5e5e5;
+    padding-block: 1.25rem;
+  }
+
+  .footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__legal {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__legal a {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .footer__legal a:hover { opacity: 1; }
+
+  .footer__lang select {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    border: 1px solid #ccc;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .footer__copy {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-left: auto;
+  }
+
+  @media (max-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer__brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 480px) {
+    .footer__inner { grid-template-columns: 1fr; }
+  }
+</style>
