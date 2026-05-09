@@ -6,6 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Layer website — fill in a brief description here.
 
+## URLs
+
+- **Live site:** https://the-layer-site.vercel.app
+- **GitHub:** https://github.com/tflo-tflo/the-layer-site
+
 ## Stack
 
 - **Framework:** Astro 6 (static site generation)

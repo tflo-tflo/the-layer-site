@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    category: 'Booking',
+    questions: [
+      {
+        q: 'How do I book a stay?',
+        a: 'All properties can be booked directly through our booking links on the <a href="/book">Book page</a>. We recommend booking direct — it\'s the best available rate and connects you to the people who run each property.',
+      },
+      {
+        q: 'Can I contact you before booking?',
+        a: 'Of course. If you have questions about a property, need help with dates, or are planning a group stay, <a href="/contact">get in touch</a> before booking. We\'re happy to help.',
+      },
+      {
+        q: 'What is your cancellation policy?',
+        a: 'Cancellation policies vary by property and booking platform. The specific policy will be shown at the time of booking. If you have questions about a particular booking, contact us directly.',
+      },
+      {
+        q: 'Do you offer long-stay rates?',
+        a: 'For stays of a week or more, or for group bookings, please reach out to us directly. Some arrangements work better through a conversation.',
+      },
+    ],
+  },
+  {
+    category: 'The properties',
+    questions: [
+      {
+        q: 'Are all properties available now?',
+        a: 'The Layer Atami Garden, Ito, and Tangram are currently available to book. The Layer Atami Hotel is opening Spring 2026. The Layer Shimoda is in development with details to follow.',
+      },
+      {
+        q: 'Are the private houses self-catering?',
+        a: 'Yes — the private houses (Atami Garden, Ito, Tangram) are self-catering. Each has a fully equipped kitchen. We provide everything you need for a comfortable stay.',
+      },
+      {
+        q: 'Do the properties have onsen?',
+        a: 'The Layer Ito has a private Towada stone onsen bath. The Layer Atami Garden has a private hinoki cypress bath. The Layer Atami Hotel provides access to Atami\'s public onsen nearby. All Izu properties are within easy reach of public onsen facilities.',
+      },
+      {
+        q: 'How many guests can each property accommodate?',
+        a: 'The Layer Atami Garden and Ito can accommodate up to 6 guests each. The Layer Atami Hotel has 7 rooms. The Layer Tangram — please check the booking page for current capacity.',
+      },
+    ],
+  },
+  {
+    category: 'Getting there',
+    questions: [
+      {
+        q: 'How do I get to Atami from Tokyo?',
+        a: 'Atami is approximately 45 minutes from Tokyo Station on the Kodama Shinkansen, or around 1h20m by express train (Odoriko). The city is compact and walkable from the station.',
+      },
+      {
+        q: 'How do I get to Ito from Tokyo?',
+        a: 'Ito is around 1h40m from Tokyo Station by the Odoriko limited express, or 2 hours by regular trains via Atami. Local buses and taxis serve the area from Ito Station.',
+      },
+      {
+        q: 'How do I get to Nagano / Tangram?',
+        a: 'Nagano is approximately 1h20m from Tokyo by Shinkansen. Tangram-Madarao is a further 45-60 minutes by bus or car from Nagano Station. Detailed access instructions are provided with each booking.',
+      },
+    ],
+  },
+  {
+    category: 'Drink & Listen',
+    questions: [
+      {
+        q: 'Are the Drink & Listen spaces open to non-guests?',
+        a: 'Yes — Lobby Bar Taki, Coffee Kissaten Tampopo, and Dandelion Record Kissaten are all public-facing and welcome guests, local visitors, and anyone passing through Atami.',
+      },
+      {
+        q: 'Do you serve food?',
+        a: 'We serve small sweets alongside drinks — including our house sweet, cookie ice cream sandwiches at Lobby Bar Taki. We do not serve full meals.',
+      },
+      {
+        q: 'Do I need a reservation?',
+        a: 'Reservations are not required for drop-in visits. For larger groups or events, please contact us in advance.',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="FAQ — The Layer"
+  description="Frequently asked questions about staying at The Layer — booking, properties, access, and our Drink & Listen spaces in Atami."
+>
+  <div class="page-header container">
+    <p class="page-header__label">FAQ</p>
+    <h1>Common questions.</h1>
+    <p class="page-header__sub">
+      If you can't find what you're looking for, <a href="/contact">get in touch</a> — we're happy to help.
+    </p>
+  </div>
+
+  <div class="faq-body container">
+    {faqs.map(section => (
+      <section class="faq-section" aria-labelledby={`faq-${section.category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
+        <h2 id={`faq-${section.category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
+          {section.category}
+        </h2>
+        <dl class="faq-list">
+          {section.questions.map(item => (
+            <>
+              <dt>{item.q}</dt>
+              <dd set:html={item.a} />
+            </>
+          ))}
+        </dl>
+      </section>
+    ))}
+
+    <section class="faq-contact" aria-label="Still have questions">
+      <h2>Still have a question?</h2>
+      <p>Our team reads and responds to all enquiries. Email is the fastest way to reach us.</p>
+      <a href="mailto:info@thelayer.jp" class="btn btn--primary">info@thelayer.jp</a>
+      <a href="/contact" class="btn">Contact page</a>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 2rem;
+    max-width: 680px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+  }
+  .page-header__sub a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .faq-body {
+    padding-block: 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 760px;
+  }
+
+  .faq-section { border-top: 1px solid #e5e5e5; padding-top: 2.5rem; }
+
+  .faq-section h2 {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 2rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .faq-list dt {
+    font-family: var(--font-body);
+    font-size: 0.975rem;
+    font-weight: 600;
+    padding: 1.25rem 0 0.6rem;
+    border-top: 1px solid #f0f0f0;
+  }
+  .faq-list dt:first-of-type { border-top: none; padding-top: 0; }
+  .faq-list dd {
+    font-size: 0.925rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    padding-bottom: 1.25rem;
+    max-width: 640px;
+  }
+  .faq-list dd :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 1;
+  }
+
+  .faq-contact {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .faq-contact h2 {
+    flex: 0 0 100%;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 0.25rem;
+  }
+  .faq-contact p {
+    flex: 0 0 100%;
+    font-size: 0.9rem;
+    opacity: 0.65;
+    margin-bottom: 0.5rem;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: #000; color: #fff; }
+  .btn--primary { background: #000; color: #fff; }
+  .btn--primary:hover { background: #333; }
+</style>

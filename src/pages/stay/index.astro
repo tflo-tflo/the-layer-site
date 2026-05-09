@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const properties = [
+  {
+    slug: 'atami-hotel',
+    name: 'The Layer | Atami Hotel',
+    location: 'Atami, Shizuoka',
+    type: 'Boutique hotel · 7 rooms',
+    description: 'A seven-room boutique hotel in a restored 1960s building in central Atami. Showa-era warmth meets considered contemporary design — with a lobby bar, kissaten, and easy access to the city\'s onsen and coastline.',
+    image: '/images/atami-hotel.jpg',
+    status: 'Opening Spring 2026',
+  },
+  {
+    slug: 'atami-garden',
+    name: 'The Layer | Atami Garden',
+    location: 'Atami, Shizuoka',
+    type: 'Private house · Up to 6 guests',
+    description: 'A restored 1930s kominka near Kinomiya Shrine. Private hinoki onsen bath, tatami rooms, a vinyl listening lounge, and Fuji woodcarving throughout. One of the region\'s finest private houses.',
+    image: '/images/atami-garden.jpg',
+  },
+  {
+    slug: 'ito',
+    name: 'The Layer | Ito',
+    location: 'Ito, Shizuoka',
+    type: 'Private house · Up to 6 guests',
+    description: 'A mid-century residence built in 1968 by master craftsmen. Towada stone bath, engawa veranda, tatami rooms, and a karaoke space. Rated one of Japan\'s top stays by Condé Nast.',
+    image: '/images/ito.jpg',
+  },
+  {
+    slug: 'tangram',
+    name: 'The Layer | Tangram',
+    location: 'Nagano',
+    type: 'Ski house',
+    description: 'A winter house three minutes from Tangram-Madarao ski resort, rooted in Japan\'s bubble-era ski culture. Warm, generous, and built for long snowy weekends.',
+    image: '/images/tangram.jpg',
+  },
+  {
+    slug: 'shimoda',
+    name: 'The Layer | Shimoda',
+    location: 'Shimoda, Shizuoka',
+    type: 'Coming soon',
+    description: 'At the southern tip of the Izu Peninsula, where deep-blue Pacific bays meet old-town Japan. More details to follow.',
+    image: '/images/shimoda.jpg',
+    status: 'Coming soon',
+  },
+];
+---
+
+<Layout
+  title="Stay — The Layer | Boutique Stays in Izu & Nagano"
+  description="Five restored properties across Japan's Izu Peninsula and Nagano — boutique hotel, private houses, and a ski house. Book direct for the best rates."
+>
+  <div class="page-header container">
+    <p class="page-header__label">Stay</p>
+    <h1>Stays shaped by architecture, atmosphere, and time</h1>
+    <p class="page-header__sub">
+      Each of our spaces at The Layer begins with an older building — one with history and craft —
+      and adds layers of comfort, considered design, and quiet hospitality.
+      We are not building new. We are finding what was overlooked.
+    </p>
+  </div>
+
+  <section class="properties container" aria-label="Our properties">
+    {properties.map((p, i) => (
+      <article class={`property-row ${i % 2 === 1 ? 'property-row--reverse' : ''}`}>
+        <div class="property-row__image">
+          <img
+            src={p.image}
+            alt={`${p.name} — ${p.location}`}
+            width="800"
+            height="600"
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+          {p.status && <span class="property-row__badge">{p.status}</span>}
+        </div>
+        <div class="property-row__body">
+          <p class="property-row__type">{p.type}</p>
+          <h2 class="property-row__name">{p.name}</h2>
+          <p class="property-row__location">{p.location}</p>
+          <p class="property-row__desc">{p.description}</p>
+          <div class="property-row__actions">
+            <a href={`/stay/${p.slug}`} class="btn">View property</a>
+            {!p.status && <a href="/book" class="btn btn--primary">Book now</a>}
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="stay-cta container" aria-label="Book direct">
+    <p>Book direct with The Layer for the best available rate and a direct connection to the people who run each property.</p>
+    <a href="/book" class="btn btn--primary">Check availability</a>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 2rem;
+    max-width: 720px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    max-width: 600px;
+  }
+
+  .properties {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding-block: 3rem 5rem;
+  }
+
+  .property-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .property-row--reverse { direction: rtl; }
+  .property-row--reverse > * { direction: ltr; }
+
+  .property-row__image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #e8e4df;
+  }
+  .property-row__image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .property-row:hover .property-row__image img { transform: scale(1.03); }
+  .property-row__badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    font-size: 0.7rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: #fff;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .property-row__type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 0.75rem;
+  }
+  .property-row__name {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 0.4rem;
+  }
+  .property-row__location {
+    font-size: 0.875rem;
+    opacity: 0.55;
+    margin-bottom: 1.25rem;
+  }
+  .property-row__desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    opacity: 0.72;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+  .property-row__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: #000; color: #fff; }
+  .btn--primary { background: #000; color: #fff; }
+  .btn--primary:hover { background: #333; }
+
+  .stay-cta {
+    padding-block: 3rem 5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-top: 1px solid #e5e5e5;
+  }
+  .stay-cta p {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    max-width: 520px;
+    flex: 1;
+  }
+
+  @media (max-width: 900px) {
+    .property-row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      direction: ltr;
+    }
+    .property-row--reverse > * { direction: ltr; }
+  }
+</style>

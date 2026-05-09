@@ -1,0 +1,222 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const properties = [
+  {
+    name: 'The Layer | Atami Hotel',
+    location: 'Atami, Shizuoka',
+    type: 'Boutique hotel · 7 rooms',
+    status: 'Opening Spring 2026',
+    href: 'https://www.thelayer.jp/atami',
+    available: false,
+  },
+  {
+    name: 'The Layer | Atami Garden',
+    location: 'Atami, Shizuoka',
+    type: 'Private house · Up to 6 guests',
+    href: 'https://www.thelayer.jp/atamigarden',
+    available: true,
+  },
+  {
+    name: 'The Layer | Ito',
+    location: 'Ito, Shizuoka',
+    type: 'Private house · Up to 6 guests',
+    href: 'https://www.thelayer.jp/ito',
+    available: true,
+  },
+  {
+    name: 'The Layer | Tangram',
+    location: 'Nagano',
+    type: 'Ski house',
+    href: 'https://www.thelayer.jp/tangram',
+    available: true,
+  },
+  {
+    name: 'The Layer | Shimoda',
+    location: 'Shimoda, Shizuoka',
+    type: 'Coming soon',
+    status: 'Coming soon',
+    href: '#',
+    available: false,
+  },
+];
+---
+
+<Layout
+  title="Book — The Layer"
+  description="Reserve a stay with The Layer. Find availability and booking links for our houses and hotel across Japan's Izu Peninsula and Nagano."
+>
+  <div class="page-header container">
+    <p class="page-header__label">Book</p>
+    <h1>Reserve a stay.</h1>
+    <p class="page-header__sub">
+      Find availability and booking links for our houses and hotel below.
+      We recommend booking direct — it's the best rate, and it connects you
+      directly to the people who run each property.
+    </p>
+  </div>
+
+  <section class="booking-list container" aria-label="Properties available to book">
+    {properties.map(p => (
+      <div class={`booking-row ${!p.available ? 'booking-row--unavailable' : ''}`}>
+        <div class="booking-row__info">
+          <p class="booking-row__type">{p.type}</p>
+          <h2 class="booking-row__name">{p.name}</h2>
+          <p class="booking-row__location">{p.location}</p>
+        </div>
+        <div class="booking-row__action">
+          {p.status && <span class="booking-row__status">{p.status}</span>}
+          {p.available ? (
+            <a href={p.href} class="btn btn--primary" target="_blank" rel="noopener noreferrer">Check availability</a>
+          ) : p.status === 'Opening Spring 2026' ? (
+            <a href="/contact" class="btn">Register interest</a>
+          ) : (
+            <span class="btn btn--disabled" aria-disabled="true">Coming soon</span>
+          )}
+          <a href={`/stay/${p.name.toLowerCase().replace('the layer | ', '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} class="booking-row__detail-link">View property &rarr;</a>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="book-note container" aria-label="Booking information">
+    <div class="book-note__grid">
+      <div>
+        <h3>Direct is best</h3>
+        <p>Booking directly with us means the best available rate, no platform fees, and a direct line to the people who run each property — for questions before, during, and after your stay.</p>
+      </div>
+      <div>
+        <h3>Questions before booking</h3>
+        <p>If you'd like to discuss a property before booking — dates, suitability, access, or anything else — <a href="/contact">get in touch</a>. We're happy to help.</p>
+      </div>
+      <div>
+        <h3>Group or longer stays</h3>
+        <p>For extended stays, group bookings, or collaborations, please reach out directly. Some arrangements work better through a conversation than through a booking form.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 2rem;
+    max-width: 680px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    max-width: 580px;
+  }
+
+  .booking-list {
+    padding-block: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .booking-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid #e5e5e5;
+    flex-wrap: wrap;
+  }
+  .booking-row:last-child { border-bottom: 1px solid #e5e5e5; }
+  .booking-row--unavailable { opacity: 0.6; }
+
+  .booking-row__type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 0.4rem;
+  }
+  .booking-row__name {
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+  }
+  .booking-row__location {
+    font-size: 0.875rem;
+    opacity: 0.55;
+  }
+
+  .booking-row__action {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .booking-row__status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+  }
+  .booking-row__detail-link {
+    font-size: 0.85rem;
+    opacity: 0.55;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .booking-row__detail-link:hover { opacity: 1; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .btn:hover { background: #000; color: #fff; }
+  .btn--primary { background: #000; color: #fff; }
+  .btn--primary:hover { background: #333; }
+  .btn--disabled {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .book-note {
+    padding-block: 3rem 5rem;
+    border-top: 1px solid #e5e5e5;
+  }
+  .book-note__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2.5rem;
+  }
+  .book-note__grid h3 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .book-note__grid p {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    opacity: 0.65;
+  }
+  .book-note__grid a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

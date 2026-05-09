@@ -1,0 +1,255 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Stories by The Layer — Izu Peninsula, Japan"
+  description="The thinking and evolution behind The Layer. Inspirations, craftspeople, renovations, and the places that shaped the project."
+>
+  <div class="page-header container">
+    <p class="page-header__label">Stories</p>
+    <h1>Where it started.</h1>
+    <p class="page-header__sub">
+      In 2020 we bought a house in Ito. We didn't knock it down and rebuild — we restored it.
+      That decision became a project, and that project became The Layer.
+    </p>
+  </div>
+
+  <section class="origin container" aria-labelledby="origin-heading">
+    <div class="origin__content">
+      <h2 id="origin-heading">The Ito House</h2>
+
+      <p>
+        We bought the house in September of 2020. According to the documents and the real estate agent,
+        we are the third owners since the house was built in 1968. The story we were told is that it was
+        built by a wealthy company executive who worked in steel — built for his lover to live in, and
+        he would come down on weekends to see her. Eventually he passed away and she moved out, leaving
+        the house empty throughout most of the 1980s and 90s.
+      </p>
+
+      <p>
+        The next owner — the person we bought it from — was an artist, wife of a JAL pilot who had passed away.
+        She used it as a weekend house and loved the garden. She sold it because her children thought she was
+        getting too old to spend weekends there alone. She told us she was happy that we weren't going to knock
+        it down. Plenty of people had told her exactly that — and she hadn't sold it to them. She gave us a
+        small discount because we made it clear that we loved it and were going to restore it.
+      </p>
+
+      <p>
+        We don't know who the builder was, though there is a builder's seal on some of the posts.
+        What is clear is that the house was built with exceptional craftsmanship — our contractor,
+        who worked with a team of skilled craftspeople on the renovation, felt the same.
+      </p>
+
+      <p>
+        We did full renovations on the kitchen, bath and dressing room, and the toilet room.
+        We added earthquake retrofitting and additional insulation. Then we updated all of the surfaces —
+        new plaster, tatami, fusuma paper — and added some of our own style.
+      </p>
+
+      <p>
+        The fusuma paper came from <a href="http://www.tokyomatsuya.co.jp/" target="_blank" rel="noopener noreferrer">Tokyo Matsuya</a>,
+        a paper maker in continuous operation since 1690. They have hundreds of historic woodblocks,
+        still in use or reconstructed from centuries-old originals. Our choice — dark paper with a
+        gold bamboo print — was perhaps a little unusual. They told us they enjoyed seeing younger
+        people using these materials in renovations.
+      </p>
+
+      <p>
+        One area we find particularly special is the woodwork and design of the genkan — a bit of
+        mid-century influence, but still deeply traditional. The house has been rated one of Japan's
+        finest short-term rentals by Condé Nast. We share before-and-after stories on
+        <a href="https://www.instagram.com/thelayer.hotels/" target="_blank" rel="noopener noreferrer">Instagram</a>,
+        because people always ask about the spaces and the materials.
+      </p>
+
+      <p>
+        This was the beginning. From one restored house in Ito, the project grew into a collection.
+        Atami Garden followed. Then the Atami Hotel. Each with its own history, its own materials,
+        its own reason for being restored rather than rebuilt.
+      </p>
+
+      <blockquote>
+        <p>Rather than destroy, layer and make anew.</p>
+        <footer lang="ja">壊すのではなく、新しい層を重ねて創る。</footer>
+      </blockquote>
+    </div>
+
+    <aside class="origin__aside">
+      <div class="origin__fact">
+        <p class="origin__year">2020</p>
+        <p>First property acquired — the Ito house, built 1968</p>
+      </div>
+      <div class="origin__fact">
+        <p class="origin__year">2022</p>
+        <p>Atami Garden restored and opened</p>
+      </div>
+      <div class="origin__fact">
+        <p class="origin__year">2026</p>
+        <p>Atami Hotel opening — The Layer's first hotel</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="stories-more container" aria-labelledby="stories-more-heading">
+    <h2 id="stories-more-heading">More stories</h2>
+    <p class="stories-more__sub">
+      We plan to document the craftspeople, collaborators, suppliers, and places that have shaped
+      The Layer — renovation notes, material discoveries, and the things that make each property
+      what it is. More soon.
+    </p>
+
+    <div class="stories-categories">
+      <div class="stories-category">
+        <h3>Craftspeople & collaborators</h3>
+        <p>The people behind the materials, the woodwork, the plaster, and the sound systems.</p>
+      </div>
+      <div class="stories-category">
+        <h3>Renovation notes</h3>
+        <p>Before and after, season by season — how the properties were found and what changed.</p>
+      </div>
+      <div class="stories-category">
+        <h3>Places & inspiration</h3>
+        <p>The cafés, buildings, coasts, and cultural spaces that continue to shape the project.</p>
+      </div>
+      <div class="stories-category">
+        <h3>Music & listening</h3>
+        <p>The records, the listening rooms, the spaces that sound like themselves.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 2rem;
+    max-width: 720px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    max-width: 600px;
+  }
+
+  .origin {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    padding-block: 3rem 5rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .origin__content h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 2rem;
+  }
+  .origin__content p {
+    font-size: 1rem;
+    line-height: 1.9;
+    opacity: 0.78;
+    margin-bottom: 1.5rem;
+    max-width: 640px;
+  }
+  .origin__content a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .origin__content blockquote {
+    border-left: 2px solid #000;
+    padding-left: 1.5rem;
+    margin-block: 3rem 1rem;
+  }
+  .origin__content blockquote p {
+    font-size: 1.15rem;
+    font-style: italic;
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
+  }
+  .origin__content blockquote footer {
+    font-size: 0.9rem;
+    opacity: 0.5;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .origin__aside {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .origin__fact {
+    padding: 1.25rem;
+    border: 1px solid #e5e5e5;
+  }
+  .origin__year {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .origin__fact p:last-child {
+    font-size: 0.875rem;
+    opacity: 0.65;
+    line-height: 1.6;
+  }
+
+  .stories-more {
+    padding-block: 3rem 5rem;
+    border-top: 1px solid #e5e5e5;
+  }
+  .stories-more h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 0.75rem;
+  }
+  .stories-more__sub {
+    font-size: 0.975rem;
+    opacity: 0.65;
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+
+  .stories-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+  .stories-category {
+    padding: 1.75rem;
+    border: 1px solid #e5e5e5;
+  }
+  .stories-category h3 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .stories-category p {
+    font-size: 0.875rem;
+    opacity: 0.6;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .origin {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .origin__aside { position: static; }
+  }
+</style>

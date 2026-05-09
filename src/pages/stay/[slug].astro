@@ -1,0 +1,354 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const { slug } = Astro.params;
+
+const properties: Record<string, {
+  name: string;
+  location: string;
+  type: string;
+  tagline: string;
+  intro: string[];
+  features: { label: string; value: string }[];
+  image: string;
+  galleryImages: string[];
+  status?: string;
+  bookingHref: string;
+  ogDescription: string;
+}> = {
+  'atami-hotel': {
+    name: 'The Layer | Atami Hotel',
+    location: 'Atami, Shizuoka',
+    type: 'Boutique hotel · 7 rooms',
+    tagline: 'Showa warmth, contemporary design.',
+    intro: [
+      'A seven-room boutique hotel in a restored 1960s building in the heart of Atami. The building\'s original bones — terrazzo floors, generous proportions, a ground-floor lobby — have been carefully preserved and layered with considered contemporary design.',
+      'Home to Lobby Bar Taki and Coffee Kissaten Tampopo, the hotel is both a place to stay and a place for the neighbourhood. Guests have direct access to Atami\'s famous onsen, covered shopping street, and a coastline that rewards an afternoon walk.',
+    ],
+    features: [
+      { label: 'Rooms', value: '7' },
+      { label: 'Location', value: 'Central Atami, 5 min walk to sea' },
+      { label: 'Bar', value: 'Lobby Bar Taki' },
+      { label: 'Coffee', value: 'Kissaten Tampopo' },
+      { label: 'Onsen', value: 'Access to Atami\'s public onsen nearby' },
+      { label: 'Status', value: 'Opening Spring 2026' },
+    ],
+    image: '/images/atami-hotel.jpg',
+    galleryImages: [],
+    status: 'Opening Spring 2026',
+    bookingHref: '#',
+    ogDescription: 'A seven-room boutique hotel in a restored 1960s building in Atami — with Lobby Bar Taki, Coffee Kissaten Tampopo, and easy access to the city\'s onsen and coastline.',
+  },
+  'atami-garden': {
+    name: 'The Layer | Atami Garden',
+    location: 'Atami, Shizuoka',
+    type: 'Private house · Up to 6 guests',
+    tagline: 'A kominka restored with rare materials and quiet care.',
+    intro: [
+      'A beautifully restored 1930s kominka in Atami, near the ancient camphor forest of Kinomiya Shrine. The house offers a private hinoki cypress onsen bath, tatami sleeping rooms, fusuma screens from historic Tokyo craftspeople, and a private vinyl listening lounge for evening hours.',
+      'Throughout the house, Fuji woodcarving provides a recurring thread — hand-cut details on columns, transoms, and interior panels. The surrounding garden offers something in bloom in every season, maintained with care since the house was first planted.',
+    ],
+    features: [
+      { label: 'Guests', value: 'Up to 6' },
+      { label: 'Onsen', value: 'Private hinoki cypress bath' },
+      { label: 'Rooms', value: 'Tatami sleeping rooms' },
+      { label: 'Music', value: 'Private vinyl listening lounge' },
+      { label: 'Garden', value: 'Year-round blooms' },
+      { label: 'Location', value: 'Near Kinomiya Shrine, Atami' },
+    ],
+    image: '/images/atami-garden.jpg',
+    galleryImages: [],
+    bookingHref: 'https://www.thelayer.jp/atamigarden',
+    ogDescription: 'A restored 1930s kominka in Atami with private hinoki onsen bath, tatami rooms, vinyl listening lounge, and a garden near Kinomiya Shrine.',
+  },
+  'ito': {
+    name: 'The Layer | Ito',
+    location: 'Ito, Shizuoka',
+    type: 'Private house · Up to 6 guests',
+    tagline: 'A mid-century craftsman house, built with rare care.',
+    intro: [
+      'Built in 1968 by a master craftsman for a discerning client, this mid-century Japanese residence stands as one of Ito\'s finest examples of Showa-era domestic architecture. The genkan entryway, with its layered woodwork and mid-century detailing, sets the tone for the entire house.',
+      'We bought the house in 2020 and spent the following year restoring it using traditional materials from historic suppliers. The fusuma paper — dark with a gold bamboo print — was sourced from Tokyo Matsuya, a papermaker in continuous operation since 1690. The Towada stone bath, engawa veranda, and original tatami have been preserved and renewed.',
+      'Rated one of Japan\'s top stays by Condé Nast. A karaoke space rooted in Ito\'s Showa culture rounds out an experience that is intimate, considered, and quietly memorable.',
+    ],
+    features: [
+      { label: 'Guests', value: 'Up to 6' },
+      { label: 'Bath', value: 'Towada stone onsen' },
+      { label: 'Veranda', value: 'Engawa overlooking the garden' },
+      { label: 'Rooms', value: 'Tatami rooms with restored fusuma' },
+      { label: 'Karaoke', value: 'Private karaoke space' },
+      { label: 'Recognition', value: 'Condé Nast — top stays in Japan' },
+    ],
+    image: '/images/ito.jpg',
+    galleryImages: [],
+    bookingHref: 'https://www.thelayer.jp/ito',
+    ogDescription: 'A 1968 craftsman residence in Ito, Izu Peninsula — Towada stone onsen, tatami rooms, engawa veranda, and a karaoke space. Named by Condé Nast among Japan\'s top stays.',
+  },
+  'tangram': {
+    name: 'The Layer | Tangram',
+    location: 'Nagano',
+    type: 'Ski house',
+    tagline: 'Three minutes to the mountain. Warm for the rest.',
+    intro: [
+      'A winter house three minutes from Tangram-Madarao ski resort in Nagano, built around the warmth and energy of Japan\'s bubble-era ski culture. Generous communal spaces, good music, and everything you need for long snowy weekends with people you like.',
+      'Powder days, hot baths, late mornings. The Layer Tangram is for guests who want more from a ski trip than the mountain.',
+    ],
+    features: [
+      { label: 'Resort', value: 'Tangram-Madarao (3 min drive)' },
+      { label: 'Season', value: 'Winter · Ski season' },
+      { label: 'Style', value: 'Bubble-era Japanese ski culture' },
+    ],
+    image: '/images/tangram.jpg',
+    galleryImages: [],
+    bookingHref: 'https://www.thelayer.jp/tangram',
+    ogDescription: 'A winter ski house three minutes from Tangram-Madarao in Nagano — warm interiors, Japanese bubble-era ski culture, and easy mountain access.',
+  },
+  'shimoda': {
+    name: 'The Layer | Shimoda',
+    location: 'Shimoda, Shizuoka',
+    type: 'Coming soon',
+    tagline: 'At the edge of the peninsula, facing the Pacific.',
+    intro: [
+      'At the southern tip of the Izu Peninsula, Shimoda sits where deep-blue Pacific bays meet old-town Japan. A port city with a layered history — Perry\'s landing point, treaty port, and now a quietly charming destination for those who make it this far south.',
+      'The Layer Shimoda is currently in development. More details to follow.',
+    ],
+    features: [
+      { label: 'Status', value: 'Coming soon' },
+      { label: 'Location', value: 'Shimoda, southern Izu Peninsula' },
+    ],
+    image: '/images/shimoda.jpg',
+    galleryImages: [],
+    status: 'Coming soon',
+    bookingHref: '#',
+    ogDescription: 'Coming soon — The Layer\'s southernmost property at the tip of the Izu Peninsula, in Shimoda, Shizuoka.',
+  },
+};
+
+const property = properties[slug ?? ''];
+
+if (!property) {
+  return Astro.redirect('/stay', 302);
+}
+---
+
+<Layout
+  title={`${property.name} — The Layer`}
+  description={property.ogDescription}
+>
+  <article>
+    <div class="property-hero">
+      <div class="property-hero__image">
+        <img
+          src={property.image}
+          alt={`${property.name} — ${property.location}`}
+          width="1400"
+          height="800"
+          loading="eager"
+          fetchpriority="high"
+        />
+        {property.status && <span class="property-hero__badge">{property.status}</span>}
+      </div>
+    </div>
+
+    <div class="property-body container">
+      <header class="property-header">
+        <p class="property-header__location">{property.location} · {property.type}</p>
+        <h1 class="property-header__name">{property.name}</h1>
+        <p class="property-header__tagline">{property.tagline}</p>
+      </header>
+
+      <div class="property-content">
+        <div class="property-text">
+          {property.intro.map(p => <p>{p}</p>)}
+
+          {!property.status && (
+            <div class="property-booking">
+              <a href={property.bookingHref} class="btn btn--primary btn--large">Book this property</a>
+              <a href="/book" class="btn">See all availability</a>
+            </div>
+          )}
+          {property.status && (
+            <div class="property-booking">
+              <p class="property-booking__note">This property is not yet available to book. <a href="/contact">Get in touch</a> to register interest.</p>
+            </div>
+          )}
+        </div>
+
+        <aside class="property-features">
+          <h3>Details</h3>
+          <dl class="features-list">
+            {property.features.map(f => (
+              <>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </>
+            ))}
+          </dl>
+        </aside>
+      </div>
+    </div>
+
+    <nav class="property-nav container" aria-label="Other properties">
+      <p>More properties</p>
+      <a href="/stay">View all stays &rarr;</a>
+    </nav>
+  </article>
+</Layout>
+
+<style>
+  .property-hero {
+    height: min(70vh, 680px);
+    overflow: hidden;
+    background: #c8c0b4;
+    position: relative;
+  }
+  .property-hero__image {
+    height: 100%;
+    position: relative;
+  }
+  .property-hero__image img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .property-hero__badge {
+    position: absolute;
+    top: 1.5rem; left: 1.5rem;
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: #fff;
+    padding: 0.35rem 0.875rem;
+  }
+
+  .property-body {
+    padding-block: 4rem;
+  }
+
+  .property-header {
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+  }
+  .property-header__location {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 0.75rem;
+  }
+  .property-header__name {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+  .property-header__tagline {
+    font-size: 1.1rem;
+    opacity: 0.65;
+    font-style: italic;
+  }
+
+  .property-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .property-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    opacity: 0.78;
+    margin-bottom: 1.5rem;
+    max-width: 640px;
+  }
+
+  .property-booking {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e5e5;
+  }
+  .property-booking__note {
+    font-size: 0.9rem;
+    opacity: 0.65;
+    font-style: italic;
+  }
+  .property-booking__note a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .property-features {
+    padding: 2rem;
+    border: 1px solid #e5e5e5;
+    position: sticky;
+    top: 80px;
+  }
+  .property-features h3 {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 1.25rem;
+  }
+  .features-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.6rem 1.5rem;
+  }
+  .features-list dt {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .features-list dd {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: #000; color: #fff; }
+  .btn--primary { background: #000; color: #fff; }
+  .btn--primary:hover { background: #333; }
+  .btn--large { padding: 0.875rem 2rem; font-size: 1rem; }
+
+  .property-nav {
+    padding-block: 2rem 4rem;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .property-nav p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+  }
+  .property-nav a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 900px) {
+    .property-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .property-features { position: static; }
+  }
+</style>

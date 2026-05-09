@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const areas = [
+  {
+    name: 'Atami',
+    prefecture: 'Shizuoka',
+    intro: 'A former golden-age resort town, quietly reviving. Atami once drew the entire country here by train — the sea, the onsen, the Showa-era glamour of a weekend away. Much of that energy remains, and more is returning.',
+    highlights: [
+      { name: 'MOA Museum of Art', desc: 'A hilltop museum above the city — Rinpa screens, Edo lacquerware, and sweeping views of Sagami Bay.' },
+      { name: 'Kinomiya Shrine', desc: 'One of Japan\'s largest camphor trees, over 2,000 years old. The forest around the shrine rewards slow walking.' },
+      { name: 'Atami\'s onsen', desc: 'The city sits atop one of Japan\'s richest hot spring sources. Day-use baths and historic ryokan are minutes from any of our properties.' },
+      { name: 'Showa kissaten', desc: 'Atami has some of Japan\'s oldest active coffee shops — places where time moves at a different pace.' },
+    ],
+    properties: ['The Layer | Atami Hotel', 'The Layer | Atami Garden'],
+    image: null,
+  },
+  {
+    name: 'Ito',
+    prefecture: 'Shizuoka',
+    intro: 'Quieter than Atami, closer to the peninsula\'s natural character. Ito sits between mountains and the sea — a town built around water, historically significant, and increasingly interesting to those who look closely.',
+    highlights: [
+      { name: 'Ikeda Museum of 20th Century Art', desc: 'An outstanding collection of Picasso, Chagall, and Dalí, in a building above the sea.' },
+      { name: 'Jogasaki Coast', desc: 'A lava coastline formed by a 4,000-year-old eruption of Mount Omuro — sea cliffs, suspension bridges, and pine forests.' },
+      { name: 'Mount Omuro', desc: 'A dormant 300-metre cinder cone in the middle of the city. Views across the peninsula in every direction.' },
+      { name: 'Historic onsen', desc: 'Ito claims to be the oldest onsen city in Izu. The city\'s public baths are among the most authentic in the region.' },
+    ],
+    properties: ['The Layer | Ito'],
+    image: '/images/explore-izu.jpg',
+  },
+  {
+    name: 'Shimoda & Southern Izu',
+    prefecture: 'Shizuoka',
+    intro: 'The southern tip of the peninsula, where the Pacific becomes fully present. Shimoda is further — but that distance is the point. The bays are deeper blue, the old town is better preserved, and the feeling of having arrived somewhere real is impossible to miss.',
+    highlights: [
+      { name: 'Perry Road', desc: 'The tree-lined canal street where Commodore Perry\'s delegation walked to negotiations in 1854. Now quietly charming, with cafés and craft shops.' },
+      { name: 'Shimoda\'s beaches', desc: 'Shirahama and Tatadohama — wide Pacific beaches that feel completely different from anything further north.' },
+      { name: 'Rendaiji Onsen', desc: 'Hot springs served by ryokan and day baths, a short distance from Shimoda\'s historic centre.' },
+    ],
+    properties: ['The Layer | Shimoda (coming soon)'],
+    image: null,
+  },
+  {
+    name: 'Nagano',
+    prefecture: 'Nagano',
+    intro: 'Japan\'s mountain interior. Nagano is ski country in winter and hiking country in summer — but what makes it distinctive is the particular atmosphere of its bubble-era resort towns, which feel like time capsules of a very specific kind of Japanese leisure.',
+    highlights: [
+      { name: 'Tangram-Madarao', desc: 'A connected ski resort known among powder enthusiasts for deep snow and relatively uncrowded runs.' },
+      { name: 'Nozawa Onsen', desc: 'A medieval onsen village that has barely changed in a century. Ski lifts rise directly from the bathhouses.' },
+      { name: 'Togakushi Shrine', desc: 'A Shinto shrine complex deep in the cedar forests above Nagano city — atmospheric in all seasons.' },
+    ],
+    properties: ['The Layer | Tangram'],
+    image: null,
+  },
+];
+---
+
+<Layout
+  title="Explore the Izu Peninsula & Nagano — The Layer"
+  description="Our guide to the places we return to again and again — Atami, Ito, Shimoda, and Nagano. Onsen, coastline, museums, and small discoveries across the Izu Peninsula."
+>
+  <div class="page-header container">
+    <p class="page-header__label">Explore</p>
+    <h1>The places we return to.</h1>
+    <p class="page-header__sub">
+      Our properties sit at the heart of some of Japan's most quietly remarkable regions.
+      This is not an exhaustive guide — it's a selection of the things we find ourselves
+      recommending to guests again and again.
+    </p>
+  </div>
+
+  <div class="areas container">
+    {areas.map((area, i) => (
+      <section class="area" aria-labelledby={`area-${area.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
+        <div class="area__header">
+          <div>
+            <p class="area__prefecture">{area.prefecture}</p>
+            <h2 id={`area-${area.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>{area.name}</h2>
+          </div>
+          {area.properties.length > 0 && (
+            <p class="area__properties">
+              {area.properties.join(' · ')}
+            </p>
+          )}
+        </div>
+
+        <div class="area__body">
+          {area.image && (
+            <div class="area__image">
+              <img
+                src={area.image}
+                alt={`${area.name}, Izu Peninsula — The Layer guide`}
+                width="1200"
+                height="600"
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
+            </div>
+          )}
+          <p class="area__intro">{area.intro}</p>
+          <ul class="area__highlights" role="list">
+            {area.highlights.map(h => (
+              <li class="highlight">
+                <h3>{h.name}</h3>
+                <p>{h.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="explore-cta container">
+    <p>Planning a stay in Izu or Nagano? Our team is happy to suggest itineraries, transport, and local recommendations.</p>
+    <a href="/contact" class="btn">Get in touch</a>
+    <a href="/stay" class="btn btn--primary">View our properties</a>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 2rem;
+    max-width: 720px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    max-width: 600px;
+  }
+
+  .areas {
+    padding-block: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .area { border-top: 1px solid #e5e5e5; padding-top: 3rem; }
+
+  .area__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .area__prefecture {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+    margin-bottom: 0.4rem;
+  }
+  .area__header h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .area__properties {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    text-align: right;
+    font-style: italic;
+  }
+
+  .area__image {
+    margin-bottom: 2rem;
+    aspect-ratio: 21/9;
+    overflow: hidden;
+    background: #e8e4df;
+  }
+  .area__image img { width: 100%; height: 100%; object-fit: cover; }
+
+  .area__intro {
+    font-size: 1rem;
+    line-height: 1.85;
+    opacity: 0.75;
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+  }
+
+  .area__highlights {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .highlight h3 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .highlight p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    opacity: 0.65;
+  }
+
+  .explore-cta {
+    padding-block: 3rem 5rem;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .explore-cta p {
+    font-size: 0.95rem;
+    opacity: 0.65;
+    max-width: 480px;
+    flex: 1 1 300px;
+    line-height: 1.75;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .btn:hover { background: #000; color: #fff; }
+  .btn--primary { background: #000; color: #fff; }
+  .btn--primary:hover { background: #333; }
+</style>

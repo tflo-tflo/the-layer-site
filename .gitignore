@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.vercel
+
+# raw/original image folders (large unoptimised originals — not for repo)
+public/images/Atami/
+public/images/Atami - Ito - Izu/
+public/images/Ito house - Lisa/
+public/images/Ito house - Samuel/

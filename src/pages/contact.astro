@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact — The Layer"
+  description="Get in touch with The Layer — for stays, collaborations, press inquiries, or general questions."
+>
+  <div class="page-header container">
+    <p class="page-header__label">Contact</p>
+    <h1>Get in touch.</h1>
+    <p class="page-header__sub">
+      For questions, collaborations, or press inquiries. We read everything and respond to everything that needs a response.
+    </p>
+  </div>
+
+  <div class="contact-body container">
+    <div class="contact-options">
+      <div class="contact-option">
+        <h2>General enquiries</h2>
+        <p>For questions about our properties, booking, or anything else — email us directly.</p>
+        <a href="mailto:info@thelayer.jp" class="contact-email">info@thelayer.jp</a>
+      </div>
+
+      <div class="contact-option">
+        <h2>Collaborations & press</h2>
+        <p>We're open to creative collaborations, editorial features, and partnerships that align with the project. Please introduce yourself and your idea.</p>
+        <a href="mailto:info@thelayer.jp?subject=Collaboration" class="contact-email">info@thelayer.jp</a>
+      </div>
+
+      <div class="contact-option">
+        <h2>Booking support</h2>
+        <p>If you have a question before booking, need help with dates, or are planning a longer or group stay, we'd rather hear from you than have you figure it out alone.</p>
+        <a href="/book" class="btn">Go to bookings</a>
+      </div>
+    </div>
+
+    <aside class="contact-aside">
+      <div class="contact-detail">
+        <h3>Find us</h3>
+        <address>
+          <p>Atami, Shizuoka, Japan</p>
+          <p>Ito, Shizuoka, Japan</p>
+          <p>Nagano, Japan</p>
+        </address>
+      </div>
+
+      <div class="contact-detail">
+        <h3>Follow</h3>
+        <a
+          href="https://www.instagram.com/thelayer.hotels/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-social"
+        >
+          Instagram — @thelayer.hotels
+        </a>
+      </div>
+
+      <div class="contact-detail">
+        <h3>Response time</h3>
+        <p>We aim to respond within one working day. For urgent booking questions, email is the fastest route.</p>
+      </div>
+    </aside>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 2rem;
+    max-width: 680px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    max-width: 560px;
+  }
+
+  .contact-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    padding-block: 3rem 6rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .contact-option h2 {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    margin-bottom: 0.75rem;
+  }
+  .contact-option p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    max-width: 500px;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-email {
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.2s;
+  }
+  .contact-email:hover { opacity: 0.65; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: #000; color: #fff; }
+
+  .contact-aside {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .contact-detail {
+    padding: 1.5rem;
+    border: 1px solid #e5e5e5;
+  }
+  .contact-detail h3 {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+    margin-bottom: 0.75rem;
+  }
+  .contact-detail address {
+    font-style: normal;
+  }
+  .contact-detail address p,
+  .contact-detail p {
+    font-size: 0.875rem;
+    opacity: 0.65;
+    line-height: 1.7;
+  }
+  .contact-social {
+    font-size: 0.875rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+  .contact-social:hover { opacity: 1; }
+
+  @media (max-width: 900px) {
+    .contact-body {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .contact-aside { position: static; }
+  }
+</style>

@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Drink & Listen — The Layer Atami"
+  description="Coffee, drinks, music, and something sweet. The Layer's public spaces in Atami — Lobby Bar Taki, Coffee Kissaten Tampopo, and Dandelion Record Kissaten."
+>
+  <div class="page-header container">
+    <p class="page-header__label">Drink & Listen</p>
+    <h1>Coffee, drinks, music,<br />and something sweet.</h1>
+    <p class="page-header__sub">
+      Alongside our stays, The Layer in Atami is home to public spaces for listening and lingering.
+      Each space has its own approach to sound, its own rhythm, and a small sweet made to sit alongside a drink.
+      No full meals — just the things that make an afternoon or an evening worth staying for.
+    </p>
+  </div>
+
+  <div class="spaces container">
+    <article class="space" id="taki">
+      <div class="space__image">
+        <img
+          src="/images/amenities.jpg"
+          alt="Lobby Bar Taki at The Layer Atami — records, drinks, and listening"
+          width="800"
+          height="900"
+          loading="eager"
+        />
+      </div>
+      <div class="space__body">
+        <p class="space__label">Evening · Bar</p>
+        <h2>Lobby Bar Taki</h2>
+        <p class="space__tagline">Shaped by physical media, shared listening, and sweets.</p>
+        <p>
+          Taki is home to our record and CD collection, played intentionally through the night.
+          The bar is built around the idea that music listened to together — in a room, from a
+          speaker you can see — is different from music listened to alone.
+        </p>
+        <p>
+          Alongside drinks, we offer a small house sweet: cookie ice cream sandwiches.
+          Something playful and nostalgic, best enjoyed with good sound and good company.
+        </p>
+        <dl class="space__details">
+          <dt>When</dt>
+          <dd>Evening hours</dd>
+          <dt>Sound</dt>
+          <dd>Records & CDs, played intentionally</dd>
+          <dt>Sweet</dt>
+          <dd>Cookie ice cream sandwiches</dd>
+          <dt>Location</dt>
+          <dd>The Layer Atami Hotel lobby, Atami</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="space space--reverse" id="tampopo">
+      <div class="space__image space__image--light">
+        <div class="space__placeholder" aria-hidden="true"></div>
+      </div>
+      <div class="space__body">
+        <p class="space__label">Daytime · Coffee</p>
+        <h2>Coffee Kissaten Tampopo</h2>
+        <p class="space__tagline">A daytime kissaten for coffee and conversation.</p>
+        <p>
+          Tampopo celebrates Atami's long history of kissaten — the sit-and-stay coffee culture
+          that defined Japanese café life for decades. The space evolved from our original coffee
+          corner into a communal seating area that invites guests and visitors to slow down,
+          order well, and stay a little longer than planned.
+        </p>
+        <p>
+          Contemporary coffee alongside kissaten classics, and a sweet treat. The pace is the point.
+        </p>
+        <dl class="space__details">
+          <dt>When</dt>
+          <dd>Daytime hours</dd>
+          <dt>Coffee</dt>
+          <dd>Contemporary & kissaten classics</dd>
+          <dt>Atmosphere</dt>
+          <dd>Communal, unhurried</dd>
+          <dt>Location</dt>
+          <dd>The Layer Atami Hotel, Atami</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="space" id="dandelion">
+      <div class="space__image space__image--light">
+        <div class="space__placeholder" aria-hidden="true"></div>
+      </div>
+      <div class="space__body">
+        <p class="space__label">Record Kissaten · Tenant</p>
+        <h2>Dandelion Record Kissaten</h2>
+        <p class="space__tagline">A record listening space with its own sensibility.</p>
+        <p>
+          Dandelion is a tenant-run record kissaten housed within The Layer Atami.
+          It has its own collection, its own curatorial voice, and its own approach to the
+          listening space.
+        </p>
+        <p class="space__tbd">Full details to follow as we get closer to opening.</p>
+        <dl class="space__details">
+          <dt>Format</dt>
+          <dd>Tenant-run record kissaten</dd>
+          <dt>Status</dt>
+          <dd>Details coming</dd>
+        </dl>
+      </div>
+    </article>
+  </div>
+
+  <section class="drink-note container">
+    <p>
+      All three spaces are public-facing and welcome guests, visitors, and anyone passing through Atami.
+      None serve full meals. Reservations are not required for drop-in visits.
+    </p>
+    <a href="/contact" class="btn">Questions? Get in touch</a>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-block: 4rem 1rem;
+    max-width: 760px;
+  }
+  .page-header__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .page-header__sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.7;
+    max-width: 620px;
+  }
+
+  .spaces {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    padding-block: 4rem 5rem;
+  }
+
+  .space {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .space--reverse { direction: rtl; }
+  .space--reverse > * { direction: ltr; }
+
+  .space__image {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #1c2d1d;
+  }
+  .space__image img { width: 100%; height: 100%; object-fit: cover; }
+  .space__image--light { background: #e8e4df; }
+  .space__placeholder { width: 100%; height: 100%; }
+
+  .space__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 0.75rem;
+  }
+  .space__body h2 {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    margin-bottom: 0.6rem;
+  }
+  .space__tagline {
+    font-style: italic;
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  .space__body p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+    max-width: 520px;
+  }
+  .space__tbd { font-style: italic; opacity: 0.55 !important; }
+
+  .space__details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e5e5;
+  }
+  .space__details dt {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.45;
+    white-space: nowrap;
+  }
+  .space__details dd {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .drink-note {
+    padding-block: 3rem 5rem;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .drink-note p {
+    font-size: 0.9rem;
+    opacity: 0.65;
+    max-width: 560px;
+    flex: 1;
+    line-height: 1.75;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid #000;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .btn:hover { background: #000; color: #fff; }
+
+  @media (max-width: 900px) {
+    .space, .space--reverse {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      direction: ltr;
+    }
+    .space__image { aspect-ratio: 16/9; }
+  }
+</style>
